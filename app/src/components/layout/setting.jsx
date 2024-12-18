@@ -113,8 +113,12 @@ const ActiveRole = () => {
 
 const Settings = () => {
   return (
-    <section className="flex flex-col gap-6 w-full">
-      <Header title="Settings" text="Manage your team and preferences here." />
+    <section className="flex flex-col gap-6 w-full lg:mt-0 mt-16">
+      <Header
+        rootClassName="lg:leading-[38px] text-2xl lg:text-[30px] "
+        title="Settings"
+        text="Manage your team and preferences here."
+      />
 
       <Tabs defaultValue="my-details" className="w-full my-3 overflow-auto">
         <TabsList className="grid lg:w-full grid-cols-9 divide-x w-[1000px] bg-white border rounded-lg">
