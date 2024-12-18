@@ -1,0 +1,73 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to main branch
+  pull_request:
+    branches:
+      - main  # Trigger the workflow on pull requests to the main branch
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      # Install frontend dependencies (Vite app)
+      - name: Install frontend dependencies
+        working-directory: ./app  # Assuming the frontend is in the 'app' directory
+        run: |
+          npm install
+
+      # Build the frontend (Vite app)
+      - name: Build frontend
+        working-directory: ./app
+        run: |
+          npm run build
+
+      # Install backend dependencies (Node.js API)
+      - name: Install backend dependencies
+        working-directory: ./api  # Assuming the backend is in the 'api' directory
+        run: |
+          npm install
+
+      # Run tests on both frontend and backend (optional)
+      - name: Run tests (frontend)
+        working-directory: ./app
+        run: |
+          npm run test  # Add your test command here
+
+      - name: Run tests (backend)
+        working-directory: ./api
+        run: |
+          npm test  # Add your test command here
+
+      # Deploy to Vercel
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel_org_id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel_directory: ./app  # You can point to your frontend directory
+          github_token: ${{ secrets.GITHUBTOKEN }}  # Use GitHub token for commits
+
+      # Deploy API (Node.js) as serverless functions
+      - name: Deploy Backend (API) to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_API_ID }}
+          vercel_org_id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel_directory: ./api  # Point to your API directory
+          github_token: ${{ secrets.GITHUBTOKEN }}  # Use GitHub token for commits
