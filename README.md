@@ -1,4 +1,4 @@
-# Project Name
+# Medusa
 
 This project contains both the backend API (Node.js) and the frontend application (Vite) within a single repository.
 
