@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-family: "Inter", serif;
+}
+
+#root {
+  margin: 0 auto;
+  background: #F9FAFB;
+}
+
+.input-search {
+  background-image: url("./assets/searchIcon.svg");
+  background-position: 12px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  height: 2.5rem;
+}
+.input-search:hover {
+  border-color: #d6bbfb;
+}
+
+.input-search:focus {
+  border-color: #d6bbfb;
+  box-shadow: 0px 0px 0px 4px #f4ebff;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-checkbox .checkmark {
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border: 1px solid #D0D5DD;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #7f56d9;
+  border-color: #7f56d9;
+}
+
+.custom-checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.custom-checkbox input:indeterminate ~ .checkmark {
+  background-color: #7f56d9;
+  border-color: #7f56d9;
+}
+
+.custom-checkbox input:indeterminate ~ .checkmark::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; 
+}
+
+.custom-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1); 
+  border-top-color: #007bff; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
