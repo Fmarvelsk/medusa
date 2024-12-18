@@ -24,6 +24,7 @@ import userAvatar from "@/assets/userAvatar.png";
 import { Input } from "@/components/ui/input";
 import newFeature from "@/assets/new-feature.svg";
 import playSvg from "@/assets/playButton.svg"
+import { NavHeader } from "../ui/header";
 
 const items = [
   {
@@ -73,6 +74,9 @@ const items = [
 
 export function AppSidebar() {
   return (
+    <div>
+    <NavHeader/>
+ 
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
@@ -134,5 +138,6 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
+    </div>
   );
 }
