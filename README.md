@@ -41,13 +41,7 @@ yarn install
 Once dependencies are installed, start the Node.js server:
 
 ```bash
-npm run dev
-```
-
-or with Yarn:
-
-```bash
-yarn dev
+npm start
 ```
 
 This will start the server, usually accessible at `http://localhost:5000`. The server will handle API requests, such as fetching data for the frontend.
@@ -70,7 +64,7 @@ yarn install
 Once dependencies are installed, you can start the Vite development server with:
 
 ```bash
-yarn dev
+yarn run dev
 ```
 
 This will start the frontend client, usually accessible at `http://localhost:5173`. The client will make requests to the API running on `http://localhost:5000`.
