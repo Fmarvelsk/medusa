@@ -1,105 +1,74 @@
-const userRoles = [
+const baseRoles = [
   {
-    id: 1,
     name: "Superadmin",
     type: "DEFAULT",
-    date: "Jan 1, 2023",
     status: "Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/50866431?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-      "https://avatars.githubusercontent.com/u/40583749?v=4",
-    ],
     totalUser: 7,
   },
   {
-    id: 2,
     name: "Merchantadmin",
     type: "DEFAULT",
-    date: "Feb 1, 2023",
     status: "Active",
-
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/50866431?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-      "https://avatars.githubusercontent.com/u/40583749?v=4",
-    ],
     totalUser: 6,
   },
   {
-    id: 3,
     name: "Supportadmin",
     type: "DEFAULT",
-    date: "Feb 1, 2023",
     status: "Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/50866431?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-      "https://avatars.githubusercontent.com/u/40583749?v=4",
-    ],
     totalUser: 0,
   },
-
   {
-    id: 4,
     name: "Sales personnel",
     type: "CUSTOM",
-    date: "Mar 1, 2023",
     status: "Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-    ],
     totalUser: 0,
   },
   {
-    id: 5,
     name: "Deputy sales personnel",
     type: "CUSTOM",
-    date: "Apr 1, 2023",
     status: "In Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-    ],
     totalUser: 0,
   },
   {
-    id: 6,
     name: "Developeradmin",
     type: "SYSTEM-CUSTOM",
-    date: "May 1, 2023",
     status: "Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-      "https://avatars.githubusercontent.com/u/40583749?v=4",
-    ],
     totalUser: 0,
   },
   {
-    id: 7,
     name: "Developer-basic",
     type: "SYSTEM-CUSTOM",
-    date: "Jun 1, 2023",
     status: "Active",
-    users: [
-      "https://avatars.githubusercontent.com/u/20971850?v=4",
-      "https://avatars.githubusercontent.com/u/124599?v=4",
-      "https://avatars.githubusercontent.com/u/69650754?v=4",
-    ],
     totalUser: 0,
   },
 ];
+
+const avatarUrls = [
+  "https://avatars.githubusercontent.com/u/20971850?v=4",
+  "https://avatars.githubusercontent.com/u/50866431?v=4",
+  "https://avatars.githubusercontent.com/u/124599?v=4",
+  "https://avatars.githubusercontent.com/u/69650754?v=4",
+  "https://avatars.githubusercontent.com/u/40583749?v=4",
+];
+
+const userRoles = [];
+
+for (let i = 0; i < 100; i++) {
+  const base = baseRoles[i % baseRoles.length];
+  userRoles.push({
+    id: i + 1,
+    name: `${base.name} ${i + 1}`,
+    type: base.type,
+    date: new Date(2023, i % 12, 1).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }),
+    status: base.status,
+    users: avatarUrls.slice(0, Math.floor(Math.random() * avatarUrls.length) + 1),
+    totalUser: base.totalUser,
+  });
+}
 
 module.exports = {
   userRoles,
